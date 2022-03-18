@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Planner</title>
+</head>
+
+<body>
+
+    <script>
+        var map = new Map();
+
+        function add(key, exp) {
+            if (map.has(key)) {
+                value = map.get(key);
+                map.set(key, exp + value);
+            } else {
+                map.set(key, exp);
+            }
+        }
+
+        function del(key) {
+
+            if (map.has(key)) {
+                document.write("Deleted Expenses:- ", map.get(key), "<br>");
+                console.log("Deleted Expenses:-", map.get(key));
+                map.delete(key);
+
+            }
+
+        }
+
+
+        function calculate(map) {
+
+            const iterator = map[Symbol.iterator]();
+            let sum = 0;
+
+            map.forEach((m) => {
+                sum += m;
+            });
+            document.write("Calulate Expenses :- ", sum, "<br>");
+            console.log("Total Expenses:-", sum);
+
+
+        }
+
+        function show() {
+            console.log("Show All Expenses:", map);
+            map.forEach((m) => {
+                document.write("Expenses Added :-", m, "<br>");
+            });
+
+        }
+
+        add(1, 20000);
+        add(2, 25000);
+        add(3, 35000);
+        add(4, 45000);
+        show(map);
+        del(2);
+        calculate(map);
+    </script>
+
+
+</body>
+
+
+</html>
